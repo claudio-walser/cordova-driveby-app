@@ -18,13 +18,13 @@
  */
 var app = {
 
-    // var checkedPeople = [],
-    // var checkedTarget = [],
+    checkedPeople: [],
+    checkedTarget: false,
 
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        this.receivedEvent('start')
+        this.receivedEvent('deviceready')
     },
 
     // deviceready Event Handler
@@ -35,6 +35,26 @@ var app = {
         this.receivedEvent('deviceready');
     },
 
+    checkPeople: function (el) {
+        el.classList.add("checked");
+        this.checkedPeople.push(el.getAttribute('data-value'))
+    },
+
+    uncheckPeople: function(el) {
+        el.classList.remove("checked");
+        for( var i = 0; i < this.checkedPeople.length; i++){ 
+           if ( this.checkedPeople[i] === el.getAttribute('data-value')) {
+             this.checkedPeople.splice(i, 1); 
+           }
+        }
+    },
+
+    checkTarget: function(el) {
+        el.classList.add('checked')
+        this.checkedTarget = el.getAttribute('data-value')
+        //
+    },
+
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
@@ -42,16 +62,44 @@ var app = {
         var receivedElement = parentElement.querySelector('.received');
         var peopleElements = parentElement.querySelector('.people');
         var targetElements = parentElement.querySelector('.target');
+        var that = this
 
-        peopleElements.on('click', function(e) {
-            console.log('holy moly')
-            console.log(e)
-        })
+        parentElement.onclick = function(e) {
+            clickedElement = e.target
+            if (
+                !clickedElement.classList.contains('people') && 
+                !clickedElement.classList.contains('target') && 
+                !clickedElement.classList.contains('button')
+            ) {
+                return false;
+            }
+
+            if (clickedElement.classList.contains('people')) {
+                if (clickedElement.classList.contains('checked')) {
+                    that.uncheckPeople(clickedElement)
+                } else {
+                    that.checkPeople(clickedElement)
+                }
+            } else if (clickedElement.classList.contains('target')) {
+                var currentlyChecked = parentElement.querySelector('.target.checked')
+                if (currentlyChecked) {
+                    currentlyChecked.classList.remove('checked')
+                }
+                that.checkTarget(clickedElement)
+            } else if (clickedElement.classList.contains('button')) {
+                that.submit()
+            }
+
+        }
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
+    },
 
-        console.log('Received Event: ' + id);
+    submit: function() {
+        params = this.checkedPeople.join(' ')
+        params += ' ' + this.checkedTarget
+        console.log('send map2.py start ' + params + ' start to the gopigo')
     }
 };
 

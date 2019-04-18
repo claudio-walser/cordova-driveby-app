@@ -51,10 +51,15 @@ body {
     display: block;
     height: 30px;
     background-color: #ffffff;
-    width: 130px;
+    width: 118px;
     border: 1px solid black;
     margin: 5px;
+    padding: 5px;
     float: left;
+}
+
+.checked {
+    background-color: #ccffff;
 }
 
 @media screen and (orientation : landscape) {
@@ -63,7 +68,7 @@ body {
     }
 
     .item {
-        width: 280px;
+        width: 278px;
     }
 }
 
