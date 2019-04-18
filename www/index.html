@@ -37,39 +37,25 @@
     </head>
     <body>
         <div class="app">
-            <h1>DriveBy - Sven Walser</h1>
+            <h1>driveby - Sven Walser</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
-                <p class="success">
+                <p class="event received">  
+                    <h2>Personen</h2>
+                    <div class="item people" data-value="sven">Sven</div>
+                    <div class="item people" data-value="milo">Milo</div>
+                    <div class="item people" data-value="heinz">Heinz</div>
+                    <div class="item people" data-value="claudio">Claudio</div>
 
-                    <h4>Personen abholen</h4>
-                    <p>
-                        <label for="sven">
-                        <input type="checkbox" name="sven" id="sven" value="sven">Sven</label>
-                        <br />
-                        <label for="milo">
-                        <input type="checkbox" name="milo" id="milo" value="milo">Milo</label>
-                        <label for="heinz">
-                        <input type="checkbox" name="heinz" id="heinz" value="heinz">Heinz</label>
-                        <label for="claudio">
-                        <input type="checkbox" name="claudio" id="claudio" value="claudio">Claudio</label>
-                    </p>
+                    <h2>Ziele</h2>
+                    <div class="item target" data-value="church">Kirche</div>
+                    <div class="item target" data-value="lake">See</div>
+                    <div class="item target" data-value="cinema">Kino</div>
 
-                    <h4>zu diesem Ziel bringen</h4>
-                    <p>
-                        <label for="target-lake">
-                        <input type="radio" name="target" id="target-lake" value="Test2">See</label>
-                        <label for="target-cinema">
-                        <input type="radio" name="target" id="target-cinema" value="Test2">Kino</label>
-                        <label for="target-church">
-                        <input type="radio" name="target" id="target-church" value="Test2">Kirche</label>
-                    </p>
-                    
-                    <button name="los" value="los">Los</button>
+                    <div class="clear"></div>
 
 
                 </p>
-                <p class="event error">Leider ist ein Fehler aufgetreten, bist du im GoPiGo Netzwerk?</p>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>

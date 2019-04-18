@@ -17,9 +17,14 @@
  * under the License.
  */
 var app = {
+
+    // var checkedPeople = [],
+    // var checkedTarget = [],
+
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        this.receivedEvent('start')
     },
 
     // deviceready Event Handler
@@ -34,7 +39,14 @@ var app = {
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.success');
+        var receivedElement = parentElement.querySelector('.received');
+        var peopleElements = parentElement.querySelector('.people');
+        var targetElements = parentElement.querySelector('.target');
+
+        peopleElements.on('click', function(e) {
+            console.log('holy moly')
+            console.log(e)
+        })
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
