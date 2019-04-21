@@ -1,21 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 var app = {
 
     checkedPeople: [],
@@ -96,9 +78,45 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
     },
 
+    clearAll: function() {
+        var parentElement = document.getElementById('deviceready')
+        var checkedElements = parentElement.querySelector('checked')
+        console.log(checkedElements)
+    },
+
     submit: function() {
-        params = this.checkedPeople.join(' ')
-        params += ' ' + this.checkedTarget
+        var params = 'start&' + this.checkedPeople.join('&')
+        params += '&' + this.checkedTarget
+        params += '&start'
+
+
+        // Set up our HTTP request
+        var xhr = new XMLHttpRequest();
+
+        // Setup our listener to process completed requests
+        xhr.onload = function () {
+
+            // Process our return data
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // What do when the request is successful
+                console.log('success!', xhr);
+            } else {
+                // What do when the request fails
+                console.log('The request failed!');
+            }
+
+            // Code that should run regardless of the request status
+            console.log('This always runs...');
+        };
+
+        // Create and send a GET request
+        // The first argument is the post type (GET, POST, PUT, DELETE, etc.)
+        // The second argument is the endpoint URL
+        xhr.open('POST', 'http://10.10.10.10:8889');
+        xhr.send(params);
+
+
+
         console.log('send map2.py start ' + params + ' start to the gopigo')
     }
 };

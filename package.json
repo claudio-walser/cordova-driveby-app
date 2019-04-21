@@ -1,6 +1,3 @@
-// 20190418071809
-// https://raw.githubusercontent.com/claudio-walser/cordova-driveby-app/master/package.json
-
 {
   "name": "driveby.app",
   "displayName": "driveby",
@@ -23,9 +20,7 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {
-        
-      }
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "android"
